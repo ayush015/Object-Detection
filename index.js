@@ -21,13 +21,25 @@ function preload() {
   console.log("detector object is loaded");
 }
 
-let front = false;
-document.getElementById("flip-button").onclick = () => {
-  front = !front;
-};
+// let front = false;
+// document.getElementById("flip-button").onclick = () => {
+//   front = !front;
+// };
+
+function getWidth() {
+  return Math.max(
+    document.body.scrollWidth,
+    document.documentElement.scrollWidth,
+    document.body.offsetWidth,
+    document.documentElement.offsetWidth,
+    document.documentElement.clientWidth
+  );
+}
 
 const constraints = {
-  video: { facingMode: front ? "user" : "environment" },
+  video: {
+    facingMode: { facingMode: getWidth() < 700 ? "user" : "environment" },
+  },
 };
 // The setup() function is called once when the program starts.
 function setup() {
@@ -36,7 +48,7 @@ function setup() {
   // Creates a new HTML5 <video> element that contains the audio/video feed from a webcam.
   // The element is separate from the canvas and is displayed by default.
   video = createCapture(constraints);
-  video.size(1080, 660);
+  video.size(640, 480);
   console.log("video element is created");
   video.elt.addEventListener("loadeddata", function () {
     // set cursor back to default
@@ -69,9 +81,9 @@ function drawResult(object) {
 // draw bounding box around the detected object
 function drawBoundingBox(object) {
   // Sets the color used to draw lines.
-  stroke("green");
+  stroke("blue");
   // width of the stroke
-  strokeWeight(4);
+  strokeWeight(2);
   // Disables filling geometry
   noFill();
   // draw an rectangle
@@ -113,7 +125,6 @@ function detect() {
   // and "onDetected" function is called when object is detected
   detector.detect(video, onDetected);
 }
-
 function toggleVideo() {
   if (!video) return;
   if (videoVisibility) {
