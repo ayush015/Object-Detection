@@ -38,7 +38,7 @@ function getWidth() {
 
 const constraints = {
   video: {
-    facingMode: { facingMode: getWidth() < 700 ? "user" : "environment" },
+    facingMode: { facingMode: getWidth() < 700 ? "environment" : "user" },
   },
 };
 // The setup() function is called once when the program starts.
