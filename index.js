@@ -38,9 +38,13 @@ function getWidth() {
 
 const constraints = {
   video: {
-    facingMode: { facingMode: getWidth() < 900 ? "environment" : "user" },
+    facingMode: {
+      facingMode: window.innerWidth < 1000 ? "environment" : "user",
+    },
   },
 };
+
+console.log(window.innerWidth);
 // The setup() function is called once when the program starts.
 function setup() {
   // create canvas element with 640 width and 480 height in pixel
