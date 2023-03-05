@@ -39,7 +39,7 @@ function getWidth() {
 const constraints = {
   video: {
     facingMode: {
-      facingMode: front ? "user" : "environment",
+      facingMode: "environment",
     },
   },
 };
