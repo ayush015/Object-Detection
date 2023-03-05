@@ -21,10 +21,10 @@ function preload() {
   console.log("detector object is loaded");
 }
 
-// let front = false;
-// document.getElementById("flip-button").onclick = () => {
-//   front = !front;
-// };
+let front = false;
+document.getElementById("flip-button").onclick = () => {
+  front = !front;
+};
 
 function getWidth() {
   return Math.max(
@@ -39,7 +39,7 @@ function getWidth() {
 const constraints = {
   video: {
     facingMode: {
-      facingMode: window.innerWidth < 1000 ? "environment" : "user",
+      facingMode: front ? "user" : "environment",
     },
   },
 };
